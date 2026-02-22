@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 
 export default function UploadArea({ week }: { week: number }) {
   const [files, setFiles] = useState<FileList | null>(null);
@@ -8,10 +8,10 @@ export default function UploadArea({ week }: { week: number }) {
 
   async function fetchRemaining() {
     try {
-//       const session = await supabase.auth.getSession();
-//       const accessToken = session?.data?.session?.access_token;
+      const session = await supabase.auth.getSession();
+      const accessToken = session?.data?.session?.access_token;
       const res = await fetch(`/api/upload/quota?week=${week}`, {
-//         headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
       });
       if (!res.ok) return;
       const j = await res.json();
@@ -29,9 +29,9 @@ export default function UploadArea({ week }: { week: number }) {
     e.preventDefault();
     if (!files || files.length === 0) return;
     setStatus('Preparing uploads...');
-//     const session = await supabase.auth.getSession();
-//     const accessToken = session?.data?.session?.access_token;
-//     if (!accessToken) return setStatus('Not authenticated');
+    const session = await supabase.auth.getSession();
+    const accessToken = session?.data?.session?.access_token;
+    if (!accessToken) return setStatus('Not authenticated');
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -44,7 +44,7 @@ export default function UploadArea({ week }: { week: number }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-//           Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({ week, filename: file.name, contentType: file.type }),
       });

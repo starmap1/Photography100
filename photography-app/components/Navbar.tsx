@@ -1,20 +1,20 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-// import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../lib/supabaseClient';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-//     async function getSession() {
-//       const { data } = await supabase.auth.getSession();
-//       setUser(data.session?.user ?? null);
-//     }
-//     getSession();
+    async function getSession() {
+      const { data } = await supabase.auth.getSession();
+      setUser(data.session?.user ?? null);
+    }
+    getSession();
 
-//     const { subscription } = supabase.auth.onAuthStateChange((_event, session) => {
-//       setUser(session?.user ?? null);
-//     });
+    const { subscription } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
     return () => subscription?.unsubscribe();
   }, []);
