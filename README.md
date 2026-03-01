@@ -13,7 +13,7 @@ This repository contains a Next.js + Supabase + S3 starter scaffold for a class 
 Quick start (local)
 1. Clone
    git clone https://github.com/starmap1/Photography100.git
-   cd Photography100
+   cd Photography100/photography-app
 
 2. Install
    npm install
@@ -29,18 +29,10 @@ Quick start (local)
 5. Create a Postgres connection string for Lambda/server updates:
     - PG_CONNECTION
 
-6. Copy env vars to .env.local:
-   NEXT_PUBLIC_SUPABASE_URL=...
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-   SUPABASE_SERVICE_ROLE_KEY=...
-   S3_BUCKET_NAME=...
-   S3_REGION=...
-   AWS_ACCESS_KEY_ID=...
-   AWS_SECRET_ACCESS_KEY=...
-   PG_CONNECTION=...
-   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+6. Copy the example env file and fill in your values:
+   cp .env.local.example .env.local
 
-7. Run locally:
+7. Run locally (from photography-app/):
    npm run dev
    Open http://localhost:3000
 

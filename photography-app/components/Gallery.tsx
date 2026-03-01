@@ -42,7 +42,7 @@ export default function Gallery({ week }: { week: number }) {
             src={
               p.thumbnail_s3_key
                 ? `${process.env.NEXT_PUBLIC_CLOUDFRONT_DOMAIN ? `https://${process.env.NEXT_PUBLIC_CLOUDFRONT_DOMAIN}/${p.thumbnail_s3_key}` : p.thumbnail_s3_key}`
-                : '/placeholder.png'
+                : '/placeholder.svg'
             }
             alt="student upload"
           />
